@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Dialogs from './Dialogs';
 import { updateMessageActionCreator, addMessageActionCreator } from '../../redux/dialogs-reducer';
 import { connect } from 'react-redux';
@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 let mapStateToProps = (state) => {
     return {
         messagesPage: state.messagesPage,
+        auth: state.auth.isAuth
     }
 }
 let mapDispatchToPtops = (dispatch) => {

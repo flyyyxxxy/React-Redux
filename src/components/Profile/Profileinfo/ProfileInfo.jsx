@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './ProfileInfo.module.css';
 import Loader from '../../loadderscomponent/Loader';
+import { Redirect } from 'react-router-dom';
 
 
 
@@ -9,9 +10,9 @@ function ProfileInfo(props) {
     if (!props.profile){
         return(
             <Loader/>
-        );
-        
+        );   
     } 
+        
     return (
         
         <div>

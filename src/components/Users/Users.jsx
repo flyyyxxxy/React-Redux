@@ -27,24 +27,11 @@ const Users = (props) => {
                         </NavLink>
                     </div>
                     <div>
-                        {user.followed ? <button disabled={props.followingInProgress} onClick={() => { 
-                            props.setFollowingProgress(true)
-                            usersApi.deleteFollow(user.id)
-                            .then(data=>{
-                                if(data.resultCode===0){
-                                    props.unfollow(user.id)
-                                }
-                                props.setFollowingProgress(false)
-                            })
-                             }}>Отписаться</button> : <button disabled={props.followingInProgress} onClick={() => {
-                                props.setFollowingProgress(true)
-                                usersApi.postFollow(user.id).then(data => {
-                                    if (data.resultCode === 0) {
-                                        props.follow(user.id)
-                                    }
-                                    props.setFollowingProgress(false)
-                                })
-                        }}>Подписаться</button>} 
+                        {user.followed ? <button disabled={props.followingInProgress} onClick={() => {
+                            props.unfollow(user.id)
+                        }}>Отписаться</button> : <button disabled={props.followingInProgress} onClick={() => {
+                            props.follow(user.id)
+                        }}>Подписаться</button>}
                     </div>
                 </span>
                 <span>

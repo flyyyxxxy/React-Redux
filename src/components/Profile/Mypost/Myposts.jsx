@@ -9,7 +9,7 @@ function Myposts(props) {
     }
     let onPostChange = (event) => {
         let text = event.target.value;
-        props.onPostChange(text);
+        props.updateText(text);
     }
 
     let postsElement = props.posts.map(p => <Post message={p.message} likeCounts={p.likeCounts} />);

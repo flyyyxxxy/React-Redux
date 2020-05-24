@@ -9,7 +9,7 @@
 }
 
 .loginAuth {
-  float: right;
+   float: right; 
 }
 
 .loginAuth a{
@@ -25,3 +25,7 @@
   padding-left: 120px;
   padding-top: 10px;
 }
+.container {
+  
+}
+

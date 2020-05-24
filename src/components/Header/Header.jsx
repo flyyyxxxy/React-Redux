@@ -8,10 +8,10 @@ function Header (props) {
         <div className={classes.logo}>
           FACEBOOK
         </div>
-        
         <div className={classes.loginAuth}>
-        {props.isAuth === false ? <NavLink to='/login'> LOGIN </NavLink>: <div>{props.login}</div> }
-        
+        {props.isAuth === false ?
+         <NavLink to='/login'> LOGIN </NavLink>:
+         <div><NavLink to='/login'>{props.login}</NavLink></div> }
         </div>
       </header>
     );
