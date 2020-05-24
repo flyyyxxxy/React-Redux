@@ -1,9 +1,27 @@
 .header {
   grid-area: h;
-  background-color: green;
+  background-color: #3b5a97;
 }
 
 .header img {
   width: 60px;
   height: 60px;
+}
+
+.loginAuth {
+  float: right;
+}
+
+.loginAuth a{
+  color: white;
+  text-decoration: none;
+}
+
+.logo {
+  font-family: 'Tahoma Regular';
+  font-weight: bold;
+  color: white;
+  font-size: 26px;
+  padding-left: 120px;
+  padding-top: 10px;
 }

@@ -1,14 +1,35 @@
 .nav{
   grid-area: n;
-  background-color: yellowgreen;
+  background-color: #667fb1;
+  
   padding: 20px;
+  width: 150px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,.1);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #8493b7;
+  
+  
 }
 
 .item a{
-  color: white;
+  /* color: white; */
   text-decoration: none;
+  font-size: 20px;
+  color: rgba(0,0,0,.6);
+  margin: 0 0 10px;
+  padding: 0 5px;
+  position: relative;
 }
 
+
+
 .item a.activeLink{
-  color: gold;
+  color: rgb(193, 128, 247);
 }
+.avatar img{
+  width: 80px;
+  height: 80px;
+  margin: auto;
+}
+
+

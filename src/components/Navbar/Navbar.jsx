@@ -6,6 +6,9 @@ import { NavLink } from 'react-router-dom';
 function Navbar(props) {
     return(
         <nav className={classes.nav}>
+          <div className={classes.avatar}>
+            <img src='https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/boy_male_avatar_portrait-128.png' alt=""/>
+          </div>
         <div  className={classes.item}> 
           <NavLink to='/profile' activeClassName={classes.activeLink}>Profile</NavLink>
         </div>

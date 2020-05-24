@@ -1,3 +1,13 @@
+@font-face {
+  font-family: 'Tahoma Regular';
+  src: url('/src/Fonts/Tahoma.eot');
+  src: url('/src/Fonts/Tahoma.eot?#iefix') format('embedded-opentype'),
+  url('./Fonts/Tahoma.woff') format('woff'),
+  url('./Fonts/Tahoma.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  }
+
 .app-wraper {
   display: grid;
   margin: 0 auto;
@@ -15,6 +25,7 @@
   grid-area: c;
   background-color: lightcoral;
 }
+
 
 
 

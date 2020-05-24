@@ -16,12 +16,12 @@ function Myposts(props) {
 
     return (
         <div className={classes.postBlock}>
-            <h3>My posts</h3>
+            <h3>Моя стена</h3>
             <div>
-                <div>
-                    <textarea onChange={onPostChange} value={props.newPostText}/>
-                </div>
-                <div><button onClick={addPost}>Add post</button></div>
+                <span>
+                    <textarea  onChange={onPostChange} value={props.newPostText}/>
+                    </span>
+                <span><button onClick={addPost}>Поделится</button></span>
             </div>
             <div className={classes.posts}>
                {postsElement}

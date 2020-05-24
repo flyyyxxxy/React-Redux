@@ -1,19 +1,18 @@
 import { connect } from 'react-redux'
 import React from 'react';
-import { followAC, unfollowAC, setUsersAC, setCurrentPageAC, setUsersCountAC, setFetchingAC } from '../../redux/users-reducer';
-import * as axios from 'axios';
+import { setFollowingProgress, follow, unfollow, setUsers, setCurrentPage, setUsersCount, setFetching } from '../../redux/users-reducer';
 import Users from './Users';
 import Loader from '../loadderscomponent/Loader';
+import {usersApi} from './../../api/api';
 
 
 class UsersAPI extends React.Component {
 
     componentDidMount() {
         this.props.setFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`).then(response => {
-
-            this.props.setUsers(response.data.items);
-            this.props.setUsersCount(response.data.totalCount)
+        usersApi.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+            this.props.setUsers(data.items);
+            this.props.setUsersCount(data.totalCount)
             this.props.setFetching(false);
         });
     }
@@ -21,10 +20,8 @@ class UsersAPI extends React.Component {
     onPageChanged = (pageNumber) => {
         this.props.setFetching(true);
         this.props.setCurrentPage(pageNumber);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`).then(response => {
-
-
-            this.props.setUsers(response.data.items);
+        usersApi.getUsers(pageNumber, this.props.pageSize).then(data => {
+            this.props.setUsers(data.items);
             this.props.setFetching(false);
         });
     }
@@ -42,7 +39,9 @@ class UsersAPI extends React.Component {
                         users={this.props.users}
                         unfollow={this.props.unfollow}
                         follow={this.props.follow}
-                        pageSize={this.props.pageSize} />
+                        pageSize={this.props.pageSize}
+                        followingInProgress={this.props.followingInProgress}
+                        setFollowingProgress={this.props.setFollowingProgress} />
                 </div>
             );
         
@@ -58,34 +57,43 @@ let mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress : state.usersPage.followingInProgress
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userID) => {
-            dispatch(followAC(userID))
-        },
-        unfollow: (userID) => {
-            dispatch(unfollowAC(userID))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage: (currentPage) => {
-            dispatch(setCurrentPageAC(currentPage))
-        },
-        setUsersCount: (totalCount) => {
-            dispatch(setUsersCountAC(totalCount))
-        },
-        setFetching: (fetching) => {
-            dispatch(setFetchingAC(fetching));
-        }
-    }
-}
+// let mapDispatchToProps = (dispatch) => {
+//     return {
+//         follow: (userID) => {
+//             dispatch(followAC(userID))
+//         },
+//         unfollow: (userID) => {
+//             dispatch(unfollowAC(userID))
+//         },
+//         setUsers: (users) => {
+//             dispatch(setUsersAC(users))
+//         },
+//         setCurrentPage: (currentPage) => {
+//             dispatch(setCurrentPageAC(currentPage))
+//         },
+//         setUsersCount: (totalCount) => {
+//             dispatch(setUsersCountAC(totalCount))
+//         },
+//         setFetching: (fetching) => {
+//             dispatch(setFetchingAC(fetching));
+//         }
+//     }
+// }
 
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPI);
+const UsersContainer = connect(mapStateToProps, {
+    follow,
+    unfollow,
+    setUsers,
+    setCurrentPage,
+    setUsersCount,
+    setFetching,
+    setFollowingProgress
+    })(UsersAPI);
 
 export default UsersContainer;

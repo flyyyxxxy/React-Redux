@@ -1,10 +1,18 @@
 import React from 'react';
 import classes from './Header.module.css';
+import { NavLink } from 'react-router-dom';
 
-function Header () {
+function Header (props) {
     return(
         <header className={classes.header}>
-        <img src = 'https://cdn2.iconfinder.com/data/icons/social-network-logo-collection-2/512/14-512.png' alt='' ></img>
+        <div className={classes.logo}>
+          FACEBOOK
+        </div>
+        
+        <div className={classes.loginAuth}>
+        {props.isAuth === false ? <NavLink to='/login'> LOGIN </NavLink>: <div>{props.login}</div> }
+        
+        </div>
       </header>
     );
 }
