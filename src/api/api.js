@@ -29,8 +29,17 @@ export const usersApi = {
    
 
     getAuthInfo(){
-        return instance.get(`https://social-network.samuraijs.com/api/1.0/auth/me`,)
+        return instance.get(`auth/me`,)
         .then(response=>response.data);
+    }
+}
+
+export const ProfileApi = {
+    getStatus(userId){
+        return instance.get(`profile/status/` +userId ).then(response=>response.data)
+    },
+    updateStatus(status){
+        return instance.put(`profile/status/`, {status: status}).then(response=>response.data)
     }
 }
 
