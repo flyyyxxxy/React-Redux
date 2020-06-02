@@ -1,5 +1,4 @@
 import {usersApi, ProfileApi} from './../api/api';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS_PROFILE = 'SET_STATUS_PROFILE'
@@ -11,27 +10,15 @@ let initState = {
       { id: 2, message: 'Its my first post', likeCounts: 25 },
     ],
     profile : null,
-    newPostText: 'it camasutra',
-    statusProfile : ''
+    status : ""
   }
 const profileReducer = (state = initState, action) => {
     switch  (action.type){
         case ADD_POST: 
-            let newPost = {
-                id: 3,
-                message: state.newPostText,
-                likeCounts: 0
-            };
             return {
                 ...state,
-                posts: [...state.posts,
-                     newPost ],
-                     newPostText: ''};
-        case UPDATE_NEW_POST_TEXT:
-            return  {
-                ...state,
-            newPostText: action.newText};
-            // stateCopy.newPostText = action.newText;
+            posts: [...state.posts, {id:3, message: action.postBody, likeCounts: 0}]
+            };
         case SET_USER_PROFILE: {
             return {
                 ...state,
@@ -41,7 +28,8 @@ const profileReducer = (state = initState, action) => {
         case SET_STATUS_PROFILE: {
             return {
                 ...state,
-                statusProfile: action.text
+                status : action.status
+                
             }
         }
 
@@ -50,10 +38,9 @@ const profileReducer = (state = initState, action) => {
     };
 }
 
-export const addPost = () => ({ type: ADD_POST });
-export const updateText = (text) => ({ type: UPDATE_NEW_POST_TEXT, newText: text });
+export const addPost = (postBody) => ({ type: ADD_POST, postBody });
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
-export const setStatusProfile = (text) => ({type: SET_STATUS_PROFILE, text})
+export const setStatusProfile = (status) => ({type: SET_STATUS_PROFILE, status})
 
 
 export const getProfilePage = (userId) => {
@@ -70,8 +57,8 @@ export const getProfilePage = (userId) => {
 
 export const getProfileStatus = (userId) => {
     return (dispatch) => {
-        ProfileApi.getStatus(userId).then(data=>{
-            dispatch(setStatusProfile(data))
+        ProfileApi.getStatus(userId).then(res=>{
+            dispatch(setStatusProfile(res.data))
         })
     }
 }
@@ -80,6 +67,7 @@ export const updateProfileStatus = (status) => {
     return (dispatch) => {
         ProfileApi.updateStatus(status).then(data=>{
             if(data.resultCode === 0){
+                debugger;
                 dispatch(setStatusProfile(status))
             }
             

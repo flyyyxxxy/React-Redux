@@ -1,16 +1,16 @@
 import React from 'react';
 import Post from './Post/Post'
 import classes from './Myposts.module.css';
+import ReduxFormMyPost from './FormMyPost';
 
 function Myposts(props) {
 
-    let addPost = () => {
-        props.addPost();
+    const addPost = (value) => {
+        props.addPost(value.postBody);
     }
-    let onPostChange = (event) => {
-        let text = event.target.value;
-        props.updateText(text);
-    }
+    
+
+     
 
     let postsElement = props.posts.map(p => <Post message={p.message} likeCounts={p.likeCounts} />);
 
@@ -18,10 +18,7 @@ function Myposts(props) {
         <div className={classes.postBlock}>
             <h3>Моя стена</h3>
             <div>
-                <span>
-                    <textarea  onChange={onPostChange} value={props.newPostText}/>
-                    </span>
-                <span><button onClick={addPost}>Поделится</button></span>
+                <ReduxFormMyPost onSubmit={addPost}/>
             </div>
             <div className={classes.posts}>
                {postsElement}

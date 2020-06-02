@@ -16,6 +16,7 @@ class ProfileContainer extends React.Component  {
       let userId = this.props.match.params.userId
       this.props.getProfilePage(userId);
       this.props.getProfileStatus(userId);
+      
     }
     
     render(){
@@ -23,7 +24,7 @@ class ProfileContainer extends React.Component  {
       
       return(
         <div>
-          <ProfileInfo profile={this.props.profile} status={this.props.statusProfile}
+          <ProfileInfo profile={this.props.profile} status={this.props.status}
           updateProfileStatus={this.props.updateProfileStatus}/>
           <MypostsContainer  />
         </div>
@@ -35,7 +36,7 @@ class ProfileContainer extends React.Component  {
 let mapStateToProps= (state)=> {
   return {
     profile : state.profilePage.profile,
-    statusProfile: state.profilePage.statusProfile
+    status: state.profilePage.status
   }
 }
 
