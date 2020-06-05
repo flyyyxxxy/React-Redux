@@ -2,9 +2,6 @@ import React from 'react';
 import styles from './Users.module.css';
 import userPhoto from '../../assets/images/imageava.png';
 import { NavLink } from 'react-router-dom';
-import { usersApi } from '../../api/api';
-import Loader from './../loadderscomponent/Loader';
-
 
 const Users = (props) => {
     let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -16,9 +13,11 @@ const Users = (props) => {
     return (
         <div>
 
-            {pages.map(p => {
+
+            { pages.map(p => {
                 return <span onClick={() => { props.onPageChanged(p) }} className={props.currentPage === p && styles.selectedPage}>{p}</span>
-            })}
+            }
+ )}
             {props.users.map(user => <div key={user.id}>
                 <span>
                     <div>
