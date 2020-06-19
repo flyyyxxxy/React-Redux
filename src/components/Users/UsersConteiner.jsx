@@ -86,4 +86,4 @@ export default compose(
         getUsers,
     }),
     withAuthRedirect
-)(Users);
+)(UsersAPI);

@@ -45,9 +45,7 @@ export const setStatusProfile = (status) => ({type: SET_STATUS_PROFILE, status})
 
 export const getProfilePage = (userId) => {
     return (dispatch) => {
-        if(!userId){
-          userId =8291;
-        }
+
         usersApi.getProfile(userId)
         .then(data => {
           dispatch(setUserProfile(data));

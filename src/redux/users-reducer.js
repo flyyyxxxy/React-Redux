@@ -12,8 +12,8 @@ let initState = {
 
     ],
     pageSize: 10,
-    totalUsersCount: 0,
-    currentPage: 1,
+    totalUsersCount: 2,
+    currentPage: 0,
     isFetching: false,
     followingInProgress: false
 
