@@ -1,0 +1,6 @@
+.formError {
+    border: red 1px solid;
+    padding: 5x;
+    color: red;
+    text-transform: uppercase;
+}
