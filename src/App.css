@@ -25,6 +25,10 @@
   grid-area: c;
   background-color: lightcoral;
 }
+.containerSpiner {
+  padding-top: 250px;
+  text-align: center;
+}
 
 
 
