@@ -5,7 +5,7 @@ import Users from './Users';
 import Loader from '../loadderscomponent/Loader';
 import { compose } from 'redux';
 import {withAuthRedirect} from './../../hoc/withAuthRedirect'
-import { getPageSize, getUsersSelector, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingProgress} from '../../redux/users-selectors';
+import { getPageSize, getUsersSelector, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingProgress, getUsersSuperSelector} from '../../redux/users-selectors';
 
 class UsersAPI extends React.Component {
 
@@ -52,7 +52,7 @@ class UsersAPI extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        users: getUsersSelector(state),
+        users: getUsersSuperSelector(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
