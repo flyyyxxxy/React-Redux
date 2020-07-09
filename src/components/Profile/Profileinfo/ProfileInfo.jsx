@@ -1,7 +1,8 @@
 import React from 'react';
 import classes from './ProfileInfo.module.css';
 import Loader from '../../loadderscomponent/Loader';
-import ProfileStatus from './ProfileStatus';
+import ProfileStatusWi from './ProfileStatus';
+import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
 
 
@@ -22,7 +23,7 @@ function ProfileInfo(props) {
             </div>
             <div className={classes.discriptionBlock}>
                 <img src={props.profile.photos.large} alt=''/>
-                <div><ProfileStatus status={props.status} updateProfileStatus={props.updateProfileStatus}/> </div>
+                <div><ProfileStatusWithHooks status={props.status} updateProfileStatus={props.updateProfileStatus}/> </div>
             </div>
         </div>
     );
